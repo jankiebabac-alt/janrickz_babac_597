@@ -1,0 +1,113 @@
+import 'package:flutter/material.dart';
+
+class CalculatorScreen extends StatefulWidget {
+  const CalculatorScreen({super.key});
+
+  @override
+  State<CalculatorScreen> createState() => _CalculatorScreenState();
+}
+
+class _CalculatorScreenState extends State<CalculatorScreen> {
+  late TextEditingController firstNumberController;
+  late TextEditingController secondNumberController;
+
+  double result = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    firstNumberController = TextEditingController();
+    secondNumberController = TextEditingController();
+    result = 0;
+  }
+
+  void addNumbers() {
+    final num1 = double.tryParse(firstNumberController.text) ?? 0;
+    final num2 = double.tryParse(secondNumberController.text) ?? 0;
+
+    setState(() {
+      result = num1 + num2;
+    });
+  }
+
+  void subtractNumbers() {
+    final num1 = double.tryParse(firstNumberController.text) ?? 0;
+    final num2 = double.tryParse(secondNumberController.text) ?? 0;
+
+    setState(() {
+      result = num1 - num2;
+    });
+  }
+
+  void multiplyNumbers() {
+    final num1 = double.tryParse(firstNumberController.text) ?? 0;
+    final num2 = double.tryParse(secondNumberController.text) ?? 0;
+
+    setState(() {
+      result = num1 * num2;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Simply Calculator Kuno'), 
+        centerTitle: true,
+      ),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min, 
+            children: [
+              TextField(
+                controller: firstNumberController,
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(
+                  labelText: '1st num',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(height: 12),
+              TextField(
+                controller: secondNumberController,
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(
+                  labelText: '2nd num',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
+                    onPressed: addNumbers,
+                    child: const Text('Add'),
+                  ),
+                  ElevatedButton(
+                    onPressed: subtractNumbers,
+                    child: const Text('Subtract'),
+                  ),
+                  ElevatedButton(
+                    onPressed: multiplyNumbers,
+                    child: const Text('Multiply'),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 30),
+              Text(
+                'Result: $result',
+                style: const TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
