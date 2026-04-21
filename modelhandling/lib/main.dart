@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:modelhandling/screen/chat_screen.dart';
 import 'package:modelhandling/screen/dashboard_screen.dart';
 import 'package:modelhandling/screen/login_screen.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -19,8 +20,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Student Grade Calculator',
-      theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
-      home: LoginPage(),
+      theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple)),
+      home: const ChatPage(username: 'fgfc'),
     );
   }
 }
